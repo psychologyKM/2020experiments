@@ -1,4 +1,5 @@
-requiredPackages <- c("cowplot", "devtools", "dplyr", "ggplot2", "ggthemes", "gtable", "multcomp", "plotrix", "psych", "reshape2", "RColorBrewer", "stringr")
+setwd("XXX/2020experiments")
+requiredPackages <- c("cowplot", "dplyr", "ggplot2", "ggthemes", "gtable", "multcomp", "plotrix", "psych","remotes", "reshape2", "RColorBrewer", "stringr", "tidyverse")
 installList <- requiredPackages[!is.element(requiredPackages,installed.packages())]
 lapply(installList, install.packages)
 library(tidyverse)
@@ -201,7 +202,7 @@ cowplot::plot_grid(p1, p2, rel_widths = c(4,1))
 
 # Figure 7
 
-devtools::source_gist("2a1bb0133ff568cbe28d", filename = "geom_flat_violin.R")
+source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
 my_color = rainbow(6, alpha=0.6)
 
 raincloud <- function(title, ylab, frequencyLL, frequencyUL, showLegend){
