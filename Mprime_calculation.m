@@ -1,6 +1,8 @@
-dataset_directory = dir('/Users/XXX'); % Enter the name of the directory where PPG files from all participants are saved.
-save_path = "/Users/XXX"; % Enter the name of the directory where you want to save csv and fig file. 
-allValues = zeros(length(dataset_directory), 6); % The above directory must ONLY contain PPG files.
+cd /Users/kazukimatsumoto/Documents/GitHub/2020experiments
+dataset_directory = dir('datasets/matFiles'); % Enter the name of the directory where PPG files from all participants are saved.
+allValues = zeros(length(dataset_directory), 5); % The above directory must ONLY contain PPG files.
+save_path = "datasets/new"; % Enter the name of the directory where you want to save csv and fig file. 
+mkdir(save_path)
 
 for l = 1:(length(dataset_directory))
     currentName = strcat(dataset_directory(l).folder, '/', dataset_directory(l).name);
@@ -76,8 +78,8 @@ for l = 1:(length(dataset_directory))
         Mprime_range = [15, 40];
         everyStep = linspace(Mprime_range(1), Mprime_range(2), (Mprime_range(2) - Mprime_range(1)) * 100 + 1);
         for i = 1:length(v)
-            v1 = min(round((v(i) * 2/3) * 100) -Mprime_range(1) * 100 + 1, (Mprime_range(2) - Mprime_range(1)) * 100 + 1);
-            v2 = min(round((v(i) * 4/3) * 100) -Mprime_range(1) * 100 + 1, (Mprime_range(2) - Mprime_range(1)) * 100 + 1);
+            v1 = min(round((v(i) * 2/3) * 100) - Mprime_range(1) * 100 + 1, (Mprime_range(2) - Mprime_range(1)) * 100 + 1);
+            v2 = min(round((v(i) * 4/3) * 100) - Mprime_range(1) * 100 + 1, (Mprime_range(2) - Mprime_range(1)) * 100 + 1);
 
             k = 1;
             for j = k:v1
@@ -100,12 +102,11 @@ for l = 1:(length(dataset_directory))
         Mprime = Mprime_range(1) + (I - 1) / 100;
         allValues(l, 2 + ii) = Mprime;
     end
-    allValues(l,6) = std(vSet{1});
 end
 
 idx = allValues(:, 1) == 0;
 T = array2table(allValues(~idx, :));
-T.Properties.VariableNames = {'IDn', 'order', 'baseline', 'firstTime', 'secondTime', 'sd'};
+T.Properties.VariableNames = {'IDn', 'order', 'baseline', 'firstTime', 'secondTime'};
 currentSavedName = strcat(save_path, "/", "Mprime.csv");
 writetable(T, currentSavedName)
 
