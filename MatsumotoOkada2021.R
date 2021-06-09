@@ -74,7 +74,7 @@ glht.res.t <- multcomp::glht(amod, linfct = multcomp::mcp(condition = "Tukey"))
 summary(glht.res.t)
 summary(amod)
 
-# other anayses
+# other analyses
 
 cols <- data.frame(dat01$condition, dat01$sum.likeM, dat01$sum.likeW)
 cor(subset(cols, dat01.condition == "Tracing")[,2:3], use = "pairwise.complete.obs")
@@ -118,8 +118,7 @@ summary(lm(sum.imagine ~ place + condition*frequency, data = dat02))
 
 # STUDY2 (heart rate) -----------------------------------------------------
 
-HR <- read.csv("datasets/rData/heartRateForR.csv", header=F)
-colnames(HR) <- c("IDn","order","baseline","firstTime","secondTime","sd")
+HR <- read.csv("datasets/rData/Mprime.csv", header=T)
 HR = rbind(subset(HR, order == 0 & baseline != 15), subset(HR, order != 0 & firstTime != 15 & secondTime != 15))
 
 dat02$Mprime_base <- NA
