@@ -1,4 +1,4 @@
-cd /Users/kazukimatsumoto/Documents/GitHub/2020experiments
+cd XXX/2020experiments
 dataset_directory = dir('datasets/matFiles'); % Enter the name of the directory where PPG files from all participants are saved.
 allValues = zeros(length(dataset_directory), 5); % The above directory must ONLY contain PPG files.
 save_path = "datasets/new"; % Enter the name of the directory where you want to save csv and fig file. 
